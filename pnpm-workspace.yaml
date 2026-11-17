@@ -10,3 +10,8 @@ packages:
 # through tsconfig paths and a Vitest alias, not through workspace: dependencies.
 nodeLinker: hoisted
 hoistWorkspacePackages: false
+
+# splat-transform pulls in a native WebGPU binding for GPU compression. We compress on
+# the CPU, so its install script is not run.
+allowBuilds:
+  webgpu: false

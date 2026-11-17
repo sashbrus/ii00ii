@@ -10,11 +10,12 @@ export default defineConfig({
   use: {
     ...devices['Pixel 7'],
     channel: process.env.CI ? 'chromium' : 'msedge',
-    baseURL: 'http://localhost:4321',
+    baseURL: 'http://localhost:4329',
   },
   webServer: {
-    command: 'pnpm --filter @ii00ii/site preview',
-    url: 'http://localhost:4321',
+    // Its own port, so a dev server left running on Astro's default port is never tested by mistake.
+    command: 'pnpm --filter @ii00ii/site preview --port 4329',
+    url: 'http://localhost:4329',
     reuseExistingServer: !process.env.CI,
   },
 });

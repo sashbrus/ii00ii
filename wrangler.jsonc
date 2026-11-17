@@ -1,0 +1,6 @@
+{
+  "name": "ii00ii",
+  "compatibility_date": "2026-11-01",
+  "assets": { "directory": "./public" },
+  "routes": [{ "pattern": "ii00ii.com", "custom_domain": true }]
+}

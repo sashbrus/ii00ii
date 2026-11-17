@@ -8,7 +8,8 @@
   },
   "scripts": {
     "dev": "pnpm --filter @ii00ii/site dev",
-    "build": "pnpm --filter @ii00ii/site build",
+    "scenes": "node pipeline/make-test-scenes.mjs",
+    "build": "pnpm scenes && pnpm --filter @ii00ii/site build",
     "typecheck": "tsc --noEmit",
     "lint": "biome check .",
     "test": "vitest run",
@@ -19,8 +20,10 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.6.8",
+    "@playcanvas/splat-transform": "3.11.2",
     "@playwright/test": "^1.65.1",
     "@types/node": "^22.0.0",
+    "@types/three": "0.187.0",
     "node": "runtime:^22.23.4",
     "typescript": "^7.0.2",
     "vitest": "^5.1.0"

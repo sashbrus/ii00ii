@@ -5,3 +5,5 @@ dist/
 .astro/
 test-results/
 playwright-report/
+pipeline/.cache/
+apps/site/public/lab/*.sog

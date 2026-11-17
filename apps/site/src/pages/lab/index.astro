@@ -1,0 +1,97 @@
+---
+// Renderer bake-off (Phase 0): the same synthetic scene on two engines, measured on
+// the owner's phones. Temporary: it goes away once the engine is chosen.
+---
+
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#0b0b0a" />
+    <title>ii00ii lab — тест движков</title>
+  </head>
+  <body>
+    <main>
+      <h1>Тест 3D-движков</h1>
+      <p>
+        Это не игра. Одна и та же тестовая сцена запускается на двух движках, чтобы выбрать
+        более быстрый на вашем телефоне.
+      </p>
+      <ol>
+        <li>Нажмите «Запустить все тесты» и не трогайте телефон 2–3 минуты.</li>
+        <li>Когда вернётся эта страница, нажмите «Копировать результаты».</li>
+        <li>Пришлите скопированный текст в чат.</li>
+      </ol>
+      <button id="start" type="button">Запустить все тесты</button>
+      <button id="resume" type="button" hidden></button>
+      <pre id="results"></pre>
+      <button id="copy" type="button" hidden>Копировать результаты</button>
+      <h2>Отдельные тесты</h2>
+      <nav id="links"></nav>
+    </main>
+    <script>
+      import '../../scripts/lab/index.ts';
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  body {
+    margin: 0;
+    background: #0b0b0a;
+    color: #f2efe8;
+    font: 16px/1.5 ui-sans-serif, system-ui, 'Segoe UI', sans-serif;
+  }
+  main {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 24px 20px 48px;
+  }
+  h1 {
+    font-size: 24px;
+    font-weight: 600;
+  }
+  h2 {
+    margin-top: 36px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #a39f94;
+  }
+  p,
+  li {
+    color: #cfcbc0;
+  }
+  button {
+    display: block;
+    width: 100%;
+    margin-top: 14px;
+    padding: 14px;
+    border: 1px solid #a39f94;
+    background: none;
+    color: inherit;
+    font: inherit;
+  }
+  #start {
+    background: #f2efe8;
+    color: #0b0b0a;
+  }
+  pre {
+    margin: 20px 0 0;
+    font: 12px/1.6 ui-monospace, 'Cascadia Mono', Consolas, monospace;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    color: #cfcbc0;
+  }
+  pre:empty {
+    display: none;
+  }
+  nav a {
+    display: block;
+    padding: 8px 0;
+    border-bottom: 1px solid #2a2823;
+    color: #cfcbc0;
+    text-decoration: none;
+  }
+</style>

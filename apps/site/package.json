@@ -9,6 +9,9 @@
     "preview": "astro preview"
   },
   "dependencies": {
-    "astro": "^7.4.12"
+    "@sparkjsdev/spark": "2.4.0",
+    "astro": "^7.4.12",
+    "playcanvas": "2.24.1",
+    "three": "0.187.0"
   }
 }

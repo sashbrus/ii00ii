@@ -1,0 +1,62 @@
+---
+// One full-screen test view for the renderer bake-off. The page that uses it adds the
+// engine's script.
+interface Props {
+  title: string;
+}
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#0b0b0a" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <canvas id="view"></canvas>
+    <div id="hud"></div>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    background: #0b0b0a;
+  }
+  #view {
+    display: block;
+    width: 100%;
+    height: 100%;
+    touch-action: none;
+  }
+  #hud {
+    position: fixed;
+    top: max(10px, env(safe-area-inset-top));
+    left: 10px;
+    padding: 8px 10px;
+    border: 1px solid #3a3832;
+    background: rgba(11, 11, 10, 0.72);
+    color: #f2efe8;
+    font: 13px/1.5 ui-monospace, 'Cascadia Mono', Consolas, monospace;
+    white-space: pre-wrap;
+  }
+  #hud a {
+    color: #a39f94;
+  }
+  #hud button {
+    margin-top: 6px;
+    padding: 6px 12px;
+    border: 1px solid #a39f94;
+    background: none;
+    color: inherit;
+    font: inherit;
+  }
+</style>

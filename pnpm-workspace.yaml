@@ -1,0 +1,12 @@
+packages:
+  - apps/*
+  - packages/*
+  - games/*
+  - workers/*
+  - pipeline
+
+# Flat node_modules with no symlinks, so the repo also installs on drives that cannot
+# hold links (exFAT). For the same reason the internal packages (@ii00ii/*) are resolved
+# through tsconfig paths and a Vitest alias, not through workspace: dependencies.
+nodeLinker: hoisted
+hoistWorkspacePackages: false

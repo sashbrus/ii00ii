@@ -1,0 +1,162 @@
+---
+// The landing page is the first puzzle: six glyphs hang at different depths, and only
+// one viewpoint lines them up into the name. Without JavaScript the page shows the
+// finished logo.
+const glyphs = [...'ii00ii'];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b0b0a" />
+    <title>ii00ii — Look twice</title>
+    <meta name="description" content="Daily photoreal 3D puzzles. Coming soon." />
+    <script is:inline>
+      // Decide before first paint whether to show the puzzle, so the answer never flashes.
+      (function () {
+        var root = document.documentElement;
+        var solved = false;
+        try {
+          solved = localStorage.getItem('ii00ii.logo') === '1';
+        } catch (e) {}
+        root.className = solved ? 'open' : 'play';
+        // If the puzzle script never arrives, show the finished logo instead of nothing.
+        setTimeout(function () {
+          if (root.className === 'play') root.className = 'open';
+        }, 4000);
+      })();
+    </script>
+  </head>
+  <body>
+    <main id="room">
+      <div id="stage" class="stage" tabindex="0" role="img" aria-label="ii00ii">
+        <h1 id="rig" class="rig" aria-hidden="true">
+          {glyphs.map((glyph) => <span class="g">{glyph}</span>)}
+        </h1>
+      </div>
+      <div class="rule"></div>
+      <p class="tag">Look twice</p>
+      <button id="skip" class="skip" type="button" aria-label="Skip the puzzle">
+        <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+          <path d="M6 6l6 6-6 6M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1"></path>
+        </svg>
+      </button>
+    </main>
+    <script>
+      import '../scripts/logo.ts';
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+  }
+  body {
+    background: radial-gradient(60% 50% at 50% 45%, #1b1a17 0%, #0b0b0a 70%);
+    color: #f2efe8;
+    font-family: ui-sans-serif, system-ui, 'Segoe UI', sans-serif;
+    overflow: hidden;
+  }
+  main {
+    position: relative;
+    height: 100%;
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    padding: 24px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  .stage {
+    display: inline-block;
+    outline: none;
+  }
+  .stage:focus-visible {
+    outline: 1px solid #a39f94;
+    outline-offset: 24px;
+  }
+  .rig {
+    position: relative;
+    margin: 0;
+    font-size: clamp(56px, 16vw, 160px);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    line-height: 1.1;
+    white-space: nowrap;
+    transform-style: preserve-3d;
+  }
+  .g {
+    display: inline-block;
+    transition: opacity 0.8s ease-out;
+  }
+  .rule {
+    width: 64px;
+    height: 1px;
+    margin-top: 22px;
+    background: #a39f94;
+    transition: width 0.9s ease-out;
+  }
+  .tag {
+    margin: 18px 0 0;
+    font-size: clamp(14px, 2.4vw, 18px);
+    color: #a39f94;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    transition: opacity 0.9s ease-out;
+  }
+  .skip {
+    position: absolute;
+    bottom: max(20px, env(safe-area-inset-bottom));
+    left: 50%;
+    translate: -50% 0;
+    display: none;
+    padding: 12px;
+    border: 0;
+    background: none;
+    color: #6b675e;
+    cursor: pointer;
+  }
+  .skip:hover,
+  .skip:focus-visible {
+    color: #f2efe8;
+  }
+
+  /* While the puzzle is in play: no answer, no tagline, and the room takes the drag. */
+  .play main {
+    touch-action: none;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .play main.dragging {
+    cursor: grabbing;
+  }
+  .play:not(.ready) .rig {
+    visibility: hidden;
+  }
+  .play .rule {
+    width: 0;
+  }
+  .play .tag {
+    opacity: 0;
+  }
+  .play .skip {
+    display: block;
+  }
+  .open .g {
+    opacity: 1 !important;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .g,
+    .rule,
+    .tag {
+      transition: none;
+    }
+  }
+</style>

@@ -1,0 +1,13 @@
+{
+  "id": "logo",
+  "scene": "logo",
+  "start": { "yaw": -38, "pitch": 22 },
+  "secret": { "yaw": 0, "pitch": 0 },
+  "tolerance": 4,
+  "limits": { "yaw": 75, "pitch": 50 },
+  "hints": [
+    { "kind": "nudge", "view": { "yaw": -24, "pitch": 14 } },
+    { "kind": "where", "view": { "yaw": -10, "pitch": 6 } },
+    { "kind": "how", "view": { "yaw": 0, "pitch": 0 } }
+  ]
+}

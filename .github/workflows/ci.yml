@@ -1,0 +1,33 @@
+name: checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Lint
+        run: pnpm lint
+      - name: Types
+        run: pnpm typecheck
+      - name: Tests and solver
+        run: pnpm test
+      - name: Build
+        run: pnpm build
+      - name: Size budget
+        run: pnpm size
+      - name: Phone smoke test
+        run: pnpm exec playwright install --with-deps chromium && pnpm smoke

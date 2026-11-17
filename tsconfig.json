@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "ES2023",
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "module": "preserve",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "verbatimModuleSyntax": true,
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "types": ["node"],
+    "paths": {
+      "@ii00ii/kit": ["./packages/kit/src/index.ts"],
+      "@ii00ii/look": ["./games/look/src/index.ts"]
+    }
+  },
+  "include": [
+    "packages/*/src",
+    "games/*/src",
+    "workers/*/src",
+    "apps/*/src",
+    "apps/*/e2e",
+    "vitest.config.ts",
+    "playwright.config.ts"
+  ]
+}

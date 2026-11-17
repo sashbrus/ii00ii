@@ -1,0 +1,13 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "allowImportingTsExtensions": true,
+    "paths": {
+      "@ii00ii/kit": ["../../packages/kit/src/index.ts"],
+      "@ii00ii/look": ["../../games/look/src/index.ts"]
+    }
+  },
+  "include": [".astro/types.d.ts", "src"],
+  "exclude": ["dist"]
+}
